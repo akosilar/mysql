@@ -35,12 +35,23 @@ connection.connect();
 //     console.log(results.length, results)
 // });
 //inserting data using faker
-var person = { email: faker.internet.email() };
+// var person = { email: faker.internet.email() };
 
-connection.query('insert into users set ?', person, function (error, result) {
+// connection.query('insert into users set ?', person, function (error, result) {
+//     if (error) throw error;
+//     console.log(result);
+// });
+
+
+var person = {
+    email: faker.internet.email(),
+    created_at: faker.date.past()
+};
+var end_result = connection.query('insert into users set ?', person, function (error, result) {
     if (error) throw error;
-    console.log(result);
+    console.log(end_result);
 });
+
 
 connection.end();
 

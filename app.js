@@ -13,10 +13,16 @@ var connection = mysql.createConnection({
 connection.connect();
 
 
-var q = 'select curdate() as date, curtime() as time, now() as now';
+// var q = 'select curdate() as date, curtime() as time, now() as now';
+// connection.query(q, function(error,results,fields){
+//     if(error) throw error;
+//     console.log(results[0])
+// });
+
+var q = 'select count(*) from users';
 connection.query(q, function(error,results,fields){
     if(error) throw error;
-    console.log(results[0])
+    console.log(results.length,results)
 });
 
 connection.end();

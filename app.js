@@ -7,7 +7,7 @@ var connection = mysql.createConnection({
     user: 'sars',
     password: 'Password01',
     database: 'join_us',
-    insecureAuth: true
+
 });
 
 connection.connect();
@@ -19,10 +19,27 @@ connection.connect();
 //     console.log(results[0])
 // });
 
-var q = 'select count(*) from users';
-connection.query(q, function(error,results,fields){
-    if(error) throw error;
-    console.log(results.length,results)
+//selecting data
+// var q = 'select count(*) from users';
+// connection.query(q, function(error,results,fields){
+//     if(error) throw error;
+//     console.log(results.length,results)
+// });
+
+
+//inserting data
+// var q = 'insert into users (email) values ("wyat3@gmail.com")';
+
+// connection.query(q, function (error, results, fields) {
+//     if (error) throw error;
+//     console.log(results.length, results)
+// });
+//inserting data using faker
+var person = { email: faker.internet.email() };
+
+connection.query('insert into users set ?', person, function (error, result) {
+    if (error) throw error;
+    console.log(result);
 });
 
 connection.end();

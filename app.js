@@ -42,16 +42,31 @@ connection.connect();
 //     console.log(result);
 // });
 
+//inserting time
+// var person = {
+//     email: faker.internet.email(),
+//     created_at: faker.date.past()
+// };
+// var end_result = connection.query('insert into users set ?', person, function (error, result) {
+//     if (error) throw error;
+//     console.log(end_result);
+// });
 
-var person = {
-    email: faker.internet.email(),
-    created_at: faker.date.past()
+//inserting multiple data
+var person = [];
+for (i = 0; i < 30; i++) {
+    person.push([faker.internet.email(), faker.date.past()])
 };
-var end_result = connection.query('insert into users set ?', person, function (error, result) {
+
+var q = 'insert into users (email,created_at) values ?'
+
+var end_result = connection.query(q, [person], function (error, result) {
     if (error) throw error;
     console.log(end_result);
 });
 
+
+console.log(person)
 
 connection.end();
 

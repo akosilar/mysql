@@ -12,8 +12,8 @@ app.get("/joke", function (req, res) {
 })
 
 app.get("/random_num", (req, res) => {
-    var rand = Math.random()
-    res.send('7' + rand)
+    var rand = Math.floor(Math.random() * 10) + 1
+    res.send('your number is:' + rand)
 })
 app.listen(8080, function () {
     console.log('server running on 8080!')

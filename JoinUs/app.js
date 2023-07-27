@@ -1,8 +1,25 @@
 var express = require('express');
 var app = express();
+var mysql = require('mysql')
+
+var connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'sars',
+    password: 'Password01',
+    database: 'join_us',
+
+});
 
 app.get("/", function (req, res) {
-    res.send('you reached the home page')
+    //find count of users in db
+    var q = 'select count(*) as count from users;'
+    connection.query(q, function (err, results) {
+        if (err) throw err;
+        var count = results[0].count
+        res.send('we have ' + count + ' users in our db')
+
+    })
+    //respond with that count
 })
 
 app.get("/joke", function (req, res) {
